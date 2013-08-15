@@ -6,7 +6,7 @@ defmodule PowerHouse do
       {:_,
         [
           {"/", PowerHouse.RootHandler, []},
-          {"/g/:game_id", PowerHouse.GameHandler, []}
+          {"/games/:game_id", PowerHouse.GameHandler, []}
         ]
       }
     ])
