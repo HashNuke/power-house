@@ -1,6 +1,7 @@
 defmodule PowerHouse do
   use Application.Behaviour
 
+
   def app_dispatch do
     assets_dir = Path.join [Path.dirname(:code.which(__MODULE__)), "..", "app", "assets"]
 
@@ -22,6 +23,7 @@ defmodule PowerHouse do
     ])
   end
 
+
   def start(_type, _args) do
     {:ok, _} = :cowboy.start_http(
       :http,
@@ -37,15 +39,14 @@ defmodule PowerHouse do
   end
 
 
+  def reload_routes do
+    :cowboy.set_env(:http,:dispatch, PowerHouse.app_dispatch())
+  end
+
+
   def code_change(_oldVersion, oldState, _extra) do
     IO.puts "Changing state..."
-
-    :cowboy.set_env(
-      :http,
-      :dispatch,
-      PowerHouse.app_dispatch()
-      )
-
+    PowerHouse.reload_routes()
     {:ok, oldState}
   end
 end

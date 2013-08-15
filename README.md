@@ -10,6 +10,11 @@ A basic app for hosting websockets-based games.
 
 * Install Erlang and Elixir
 
+
+* Clone this repo, get dependencies and compile application
+
+        git clone https://github.com/HashNuke/power-house.git power-house
+        cd power-house
         mix deps.get
         mix relex.assemble
         iex -S mix
@@ -18,9 +23,9 @@ A basic app for hosting websockets-based games.
 
 * If you change routes, you'll need to run the following in your console.
 
-        :cowboy.set_env(:http,:dispatch, PowerHouse.app_dispatch())
+        r(PowerHouse) && PowerHouse.reload_routes()
 
-* For any other module changes or new modules, just recompile it using r() or c().
+* For any other module changes or new modules, just recompile it using r() or c() in the `iex` console itself.
 
 ### Usage
 
