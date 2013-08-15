@@ -2,10 +2,20 @@ defmodule PowerHouse do
   use Application.Behaviour
 
   def app_dispatch do
+    assets_dir = Path.join [Path.dirname(:code.which(__MODULE__)), "..", "app", "assets"]
+
     :cowboy_router.compile([
       {:_,
         [
           {"/", PowerHouse.RootHandler, []},
+          {
+            "/assets/[...]",
+            :cowboy_static,
+            [
+              directory: assets_dir,
+              mimetypes: {Module.function(:mimetypes, :path_to_mimes, 2), :default}
+            ]
+          },
           {"/games/:game_id", PowerHouse.GameHandler, []}
         ]
       }

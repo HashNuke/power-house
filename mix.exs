@@ -14,7 +14,7 @@ defmodule PowerHouse.Mixfile do
   def application do
     [
       mod: { PowerHouse, []},
-      applications: [:cowboy]
+      applications: [:cowboy, :mimetypes]
     ]
   end
 
@@ -22,8 +22,9 @@ defmodule PowerHouse.Mixfile do
   # { :foobar, "~> 0.1", git: "https://github.com/elixir-lang/foobar.git" }
   defp deps do
     [
-      {:cowboy, github: "extend/cowboy"},
-      {:relex,  github: "yrashk/relex"}
+      {:cowboy,    github: "extend/cowboy"},
+      {:mimetypes, github: "spawngrid/mimetypes"},
+      {:relex,     github: "yrashk/relex"}
     ]
   end
 

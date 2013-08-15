@@ -1,3 +1,4 @@
 [ "cowboy": {:git, "git://github.com/extend/cowboy.git", "3b4c0588e9bb98307576f7d6e0b52ea434138e62", []},
+  "mimetypes": {:git, "git://github.com/spawngrid/mimetypes.git", "47d37a977a7d633199822bf6b08353007483d00f", []},
   "ranch": {:git, "git://github.com/extend/ranch.git", "4f70a16bbe08e446e8fec248ca345d5f8e7df038", [{:ref, "0.8.4"}]},
   "relex": {:git, "git://github.com/yrashk/relex.git", "59ca8af106d7a71d0e75d65db489ca362f64e244", []} ]
