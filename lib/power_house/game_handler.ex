@@ -4,10 +4,15 @@ defmodule PowerHouse.GameHandler do
   end
 
   def handle(req, state) do
-    {:ok, req} = :cowboy_req.reply(200,
+    {game_id, req} = :cowboy_req.binding(:game_id, req)
+    content = "This is a page for game_id: #{game_id}"
+
+    {:ok, req} = :cowboy_req.reply(
+      200,
       [{<<"content-type">>, <<"text/html">>}],
-      "This is a game page!",
-      req)
+      content,
+      req
+    )
 
     {:ok, req, state}
   end
