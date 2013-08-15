@@ -19,13 +19,13 @@ A basic app for hosting websockets-based games.
         mix relex.assemble
         iex -S mix
 
-* Visit http://localhost:8080
+* Visit `http://localhost:8080`
 
 * If you change routes, you'll need to run the following in your console.
 
         r(PowerHouse) && PowerHouse.reload_routes()
 
-* For any other module changes or new modules, just recompile it using r() or c() in the `iex` console itself.
+* For any other module changes or new modules, recompile it using `r(YourModule)` or `c("path/to/module.ex")` in the `iex` console itself.
 
 ### Usage
 
