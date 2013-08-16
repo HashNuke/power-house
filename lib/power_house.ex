@@ -35,7 +35,14 @@ defmodule PowerHouse do
       ]
     )
 
+    compile_templates()
     PowerHouse.Supervisor.start_link
+  end
+
+
+  # templates functions are available as :app_views.index(variables)
+  def compile_templates do
+    :erlydtl.compile_dir('app/views', :app_views)
   end
 
 
@@ -46,7 +53,9 @@ defmodule PowerHouse do
 
   def code_change(_oldVersion, oldState, _extra) do
     IO.puts "Changing state..."
-    PowerHouse.reload_routes()
+
+    compile_templates()
+    reload_routes()
     {:ok, oldState}
   end
 end

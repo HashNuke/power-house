@@ -4,10 +4,12 @@ defmodule PowerHouse.Mixfile do
   use Mix.Project
 
   def project do
-    [ app: :power_house,
+    [
+      app:     :power_house,
       version: "0.0.1",
-      elixir: "~> 0.10.1",
-      deps: deps ]
+      elixir:  "~> 0.10.1",
+      deps:    deps
+    ]
   end
 
   # Configuration for the OTP application
@@ -24,6 +26,7 @@ defmodule PowerHouse.Mixfile do
     [
       {:cowboy,    github: "extend/cowboy"},
       {:mimetypes, github: "spawngrid/mimetypes"},
+      {:erlydtl,   github: "evanmiller/erlydtl"},
       {:relex,     github: "yrashk/relex"}
     ]
   end
