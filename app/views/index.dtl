@@ -43,7 +43,7 @@
 
 </head>
 <body>
-    Websocket test
+    {{ greeting }}
 
     <div id="sse">
        <a href="javascript:open()">Open websocket connection</a><br/>

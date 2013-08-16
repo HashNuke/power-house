@@ -4,7 +4,7 @@ defmodule PowerHouse.RootHandler do
   end
 
   def handle(req, state) do
-    [body] = :app_views.index([])
+    body = :app_views.index([greeting: 'Hello World'])
     headers     = [{"content-type", "text/html"}]
     {:ok, req}  = :cowboy_req.reply(200, headers, body, req)
 
