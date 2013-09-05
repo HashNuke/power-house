@@ -28,10 +28,24 @@
       wsHost = $("#server").val()
       websocket = new WebSocket(wsHost);
       console.log("Connecting to: " +  wsHost + "</b>");
-      websocket.onopen    = function(evt) { onOpen(evt)    };
-      websocket.onclose   = function(evt) { onClose(evt)   };
-      websocket.onmessage = function(evt) { onMessage(evt) };
-      websocket.onerror   = function(evt) { onError(evt)   };
+
+      websocket.onopen = function(evt) {
+        console.log("CONNECTED");
+        $("#connected").fadeIn('slow');
+        $("#content").fadeIn('slow');
+      };
+
+      websocket.onclose = function(evt) {
+        console.log("DISCONNECTED");
+      };
+
+      websocket.onmessage = function(evt) {
+        console.log("RESPONSE:", evt.data);
+      };
+
+      websocket.onerror = function(evt) {
+        console.log("ERROR:", evt.data);
+      };
     };
 
 
@@ -59,23 +73,6 @@
       };
     };
 
-
-    function onOpen(evt) {
-      console.log("CONNECTED");
-      $("#connected").fadeIn('slow');
-      $("#content").fadeIn('slow');
-    };
-
-
-    function onClose(evt) {
-      console.log("DISCONNECTED");
-    };
-
-
-    function onMessage(evt) { console.log("RESPONSE:", evt.data); };
-    function onError(evt)   { console.log("ERROR:", evt.data); };
-
-
   </script>
 </head>
 
@@ -89,7 +86,7 @@
   <div id="navigation">
     <p id="connecting">
       <input type='text' id="server" value="ws://localhost:8080/websocket"/>
-      <button type="button" onclick="toggle_connection()">connection</button>
+      <button type="button" onclick="toggle_connection()">toggle connection state</button>
     </p>
 
     <div id="connected">
