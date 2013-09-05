@@ -9,6 +9,7 @@ defmodule PowerHouse do
       {:_,
         [
           {"/", PowerHouse.RootHandler, []},
+          {"/ws", PowerHouse.WebsocketHandler, []},
           {
             "/assets/[...]",
             :cowboy_static,

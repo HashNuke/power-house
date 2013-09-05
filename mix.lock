@@ -1,5 +1,5 @@
-[ "cowboy": {:git, "git://github.com/extend/cowboy.git", "3b4c0588e9bb98307576f7d6e0b52ea434138e62", []},
-  "erlydtl": {:git, "git://github.com/evanmiller/erlydtl.git", "615194d4b16bb23825e4d2139756de982e39c976", []},
+[ "cowboy": {:git, "git://github.com/extend/cowboy.git", "9eaee45c090b9cb170554bc7e09d679bc0598716", [{:tag, "0.8.6"}]},
+  "erlydtl": {:git, "git://github.com/evanmiller/erlydtl.git", "91cc4a7fe0a71228f4ad75b7b0b593790b0fec0d", []},
   "mimetypes": {:git, "git://github.com/spawngrid/mimetypes.git", "47d37a977a7d633199822bf6b08353007483d00f", []},
   "ranch": {:git, "git://github.com/extend/ranch.git", "4f70a16bbe08e446e8fec248ca345d5f8e7df038", [{:ref, "0.8.4"}]},
-  "relex": {:git, "git://github.com/yrashk/relex.git", "59ca8af106d7a71d0e75d65db489ca362f64e244", []} ]
+  "relex": {:git, "git://github.com/yrashk/relex.git", "eecb2c4d8d80aba734273bba4256b87462020804", []} ]

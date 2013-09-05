@@ -24,7 +24,7 @@ defmodule PowerHouse.Mixfile do
   # { :foobar, "~> 0.1", git: "https://github.com/elixir-lang/foobar.git" }
   defp deps do
     [
-      {:cowboy,    github: "extend/cowboy"},
+      {:cowboy,    github: "extend/cowboy", tag: "0.8.6"},
       {:mimetypes, github: "spawngrid/mimetypes"},
       {:erlydtl,   github: "evanmiller/erlydtl"},
       {:relex,     github: "yrashk/relex"}

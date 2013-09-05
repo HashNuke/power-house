@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <title>Demo page</title>
+    <script src="/assets/jquery.js"></script>
 
     <script type="text/javascript">
         // stole this stuff from someone's git repo for quickly making a demo
@@ -21,7 +22,7 @@
                 return;
             }
             /* @todo: Change to your own server IP address */
-            ws = new WebSocket("ws://1.1.1.1:10100");
+            ws = new WebSocket("ws://0.0.0.0:8080/ws");
             ws.onopen = function() {
                 console.log('Connected');
             };
@@ -29,9 +30,7 @@
             {
                 var received_msg = evt.data;
                 console.log("Received: " + received_msg);
-                var txt = document.createTextNode("
-                    Simon says: " + received_msg
-                );
+                var txt = document.createTextNode("Simon says: " + received_msg);
                 document.getElementById('msgs').appendChild(txt);
             };
             ws.onclose = function()
