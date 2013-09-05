@@ -1,54 +1,108 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="utf-8" />
-    <title>Demo page</title>
-    <script src="/assets/jquery.js"></script>
 
-    <script type="text/javascript">
-        // stole this stuff from someone's git repo for quickly making a demo
-        var ws = new Object;
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+<title>Websocket client</title>
+  <script src="/assets/jquery.js"></script>
+  <script type="text/javascript">
 
-        function send()
-        {
-            ws.send("hello world!");
-            console.log('Message sent');
-        }
+    var websocket;
+    $(document).ready(init);
 
-        function open()
-        {
-            if (!("WebSocket" in window)) {
-                alert("This browser does not support WebSockets");
-                return;
-            }
-            /* @todo: Change to your own server IP address */
-            ws = new WebSocket("ws://0.0.0.0:8080/ws");
-            ws.onopen = function() {
-                console.log('Connected');
-            };
-            ws.onmessage = function (evt)
-            {
-                var received_msg = evt.data;
-                console.log("Received: " + received_msg);
-                var txt = document.createTextNode("Simon says: " + received_msg);
-                document.getElementById('msgs').appendChild(txt);
-            };
-            ws.onclose = function()
-            {
-                console.log('Connection closed');
-            };
-        }
-    </script>
 
+    function init() {
+      if(!("WebSocket" in window)){
+        $('#status').append('<p><span style="color: red;">websockets are not supported </span></p>');
+        $("#navigation").hide();
+      } else {
+        $('#status').append('<p><span style="color: green;">websockets are supported </span></p>');
+        connect();
+      };
+      $("#connected").hide();
+      $("#content").hide();
+    };
+
+
+    function connect()
+    {
+      wsHost = $("#server").val()
+      websocket = new WebSocket(wsHost);
+      console.log("Connecting to: " +  wsHost + "</b>");
+      websocket.onopen    = function(evt) { onOpen(evt)    };
+      websocket.onclose   = function(evt) { onClose(evt)   };
+      websocket.onmessage = function(evt) { onMessage(evt) };
+      websocket.onerror   = function(evt) { onError(evt)   };
+    };
+
+
+    function disconnect() {
+      websocket.close();
+    };
+
+
+    function toggle_connection(){
+      if(websocket.readyState == websocket.OPEN){
+        disconnect();
+      } else {
+        connect();
+      };
+    };
+
+
+    function sendTxt() {
+      if(websocket.readyState == websocket.OPEN){
+        txt = $("#send_txt").val();
+        websocket.send(txt);
+        console.log("SENDING:", txt);
+      } else {
+        console.log('Websocket is not connected');
+      };
+    };
+
+
+    function onOpen(evt) {
+      console.log("CONNECTED");
+      $("#connected").fadeIn('slow');
+      $("#content").fadeIn('slow');
+    };
+
+
+    function onClose(evt) {
+      console.log("DISCONNECTED");
+    };
+
+
+    function onMessage(evt) { console.log("RESPONSE:", evt.data); };
+    function onError(evt)   { console.log("ERROR:", evt.data); };
+
+
+  </script>
 </head>
-<body>
-    {{ greeting }}
 
-    <div id="sse">
-       <a href="javascript:open()">Open websocket connection</a><br/>
-       <a href="javascript:send()">Send Message</a>
+<body>
+  <div id="header">
+    <h1>Websocket client</h1>
+    <div id="status"></div>
+  </div>
+
+
+  <div id="navigation">
+    <p id="connecting">
+      <input type='text' id="server" value="ws://localhost:8080/websocket"/>
+      <button type="button" onclick="toggle_connection()">connection</button>
+    </p>
+
+    <div id="connected">
+      <p>
+        <input type='text' id="send_txt" value=></input>
+        <button type="button" onclick="sendTxt();">send</button>
+      </p>
     </div>
-    <div id="msgs">
+
+    <div id="content">
+      <div id="output"></div>
     </div>
+  </div>
+
 </body>
 </html>

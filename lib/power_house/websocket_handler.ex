@@ -14,7 +14,7 @@ defmodule PowerHouse.WebsocketHandler do
 
 
   def websocket_handle({:text, msg}, req, state) do
-    {:reply, {:text, << "That's what she said!", msg::binary >>}, req, state}
+    {:reply, {:text, "Someone said: #{msg}"}, req, state}
   end
 
 

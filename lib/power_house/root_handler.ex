@@ -3,6 +3,7 @@ defmodule PowerHouse.RootHandler do
     {:ok, req, nil}
   end
 
+
   def handle(req, state) do
     body = :app_views.index([greeting: 'Hello World'])
     headers     = [{"content-type", "text/html"}]
@@ -11,5 +12,8 @@ defmodule PowerHouse.RootHandler do
     {:ok, req, state}
   end
 
-  def terminate(_reason, _req, _state), do: :ok
+
+  def terminate(_reason, _req, _state), do
+    :ok
+  end
 end

@@ -9,11 +9,9 @@ defmodule PowerHouse do
       {:_,
         [
           {"/", PowerHouse.RootHandler, []},
-          {"/ws", PowerHouse.WebsocketHandler, []},
+          {"/websocket", PowerHouse.WebsocketHandler, []},
           {
-            "/assets/[...]",
-            :cowboy_static,
-            [
+            "/assets/[...]", :cowboy_static, [
               directory: assets_dir,
               mimetypes: {Module.function(:mimetypes, :path_to_mimes, 2), :default}
             ]
@@ -30,11 +28,9 @@ defmodule PowerHouse do
       :http,
       100,
       [port: 8080],
-      [env: [
-          dispatch: app_dispatch()
-        ]
-      ]
+      [env: [dispatch: app_dispatch()] ]
     )
+
 
     compile_templates()
     PowerHouse.Supervisor.start_link
